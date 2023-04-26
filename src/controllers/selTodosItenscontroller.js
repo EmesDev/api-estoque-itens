@@ -2,9 +2,6 @@ const database = require('../database/connection');
 
 class SelTodosItens {
     selTodosItens(req, res) {
-        // let {tabela} = req.body;
-
-        // console.log(tabela)
 
         database.raw('CALL pSelTodosItens()')
             .then((data)=>{
