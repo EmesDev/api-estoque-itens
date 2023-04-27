@@ -17,6 +17,8 @@ class UptQuantidadeItens {
             .catch((erro) => {
                 console.error(erro);
             });
+
+
     }
 }
 
