@@ -4,11 +4,9 @@ class SelQuatidadeStatus {
     selQtStatus(req, res) {
         let { statusColuna } = req.body;
 
-        console.log(statusColuna)
 
         database.raw('CALL pSelQuatidadeStatus()')
         .then((data)=>{
-            console.log(data)
             res.json(data[0][0])
         })
     .catch((erro) => {

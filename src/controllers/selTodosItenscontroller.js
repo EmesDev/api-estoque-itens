@@ -5,7 +5,6 @@ class SelTodosItens {
 
         database.raw('CALL pSelTodosItens()')
             .then((data)=>{
-                    console.log(data)
                     res.json(data[0][0])
                 })
             .catch((erro) => {

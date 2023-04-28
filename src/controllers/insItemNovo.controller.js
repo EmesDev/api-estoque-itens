@@ -2,7 +2,7 @@ const database = require('../database/connection');
 
 class InsItemNovoController {
     novoItem(req, res) {
-        let {  itemNome, ItemDescricao, itemQuantidade} = req.body;
+        let {  itemNome, itemDescricao, itemQuantidade} = req.body;
         let itemStatus
         if(itemQuantidade > 0){
             itemStatus = "Em Estoque"
@@ -10,11 +10,9 @@ class InsItemNovoController {
             itemStatus = "Sem Estoque"
         }
 
-        console.log( itemNome, ItemDescricao, itemQuantidade, itemStatus)
 
-        database.raw('CALL insItem(?, ?, ?, ?)', [itemNome, ItemDescricao, itemQuantidade, itemStatus])
+        database.raw('CALL pInsEstoqueItem(?, ?, ?, ?)', [itemNome, itemDescricao, itemQuantidade, itemStatus])
             .then(data=>{
-                    console.log(data)
                     res.json({
                         message:"Item criado com sucesso", 
                         status:200

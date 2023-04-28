@@ -3,7 +3,7 @@ var knex = require('knex')({
     connection: {
         host : '127.0.0.1',     
         user : 'root',       
-        database : 'estoque_ti'       
+        database : 'db_estoque'       
     }
 });
 module.exports = knex
