@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 28/04/2023 às 02:17
+-- Tempo de geração: 28/04/2023 às 19:17
 -- Versão do servidor: 10.4.28-MariaDB
--- Versão do PHP: 8.0.28
+-- Versão do PHP: 8.1.17
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -57,9 +57,14 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `pSelTodosItens` ()   BEGIN
 	SELECT * FROM `estoque_itens`;
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `pUptQuantidadeItem` (IN `quantidade` INT(10), IN `idItem` INT(10))   BEGIN
+CREATE DEFINER=`root`@`localhost` PROCEDURE `pUptQuantidadeItem` (IN `idItem` INT(10), IN `itemNome` VARCHAR(45), IN `itemDescricao` VARCHAR(45), IN `itemQuantidade` INT(10), IN `itemStatus` VARCHAR(45))   BEGIN
 
-UPDATE `itens` SET `itemQuantidade` = quantidade WHERE `estoque_itens`.`idItem` = idItem;
+UPDATE `estoque_itens` SET `itemNome` = itemNome WHERE `estoque_itens`.`idItem` = idItem;
+UPDATE `estoque_itens` SET `itemDescricao` = itemDescricao WHERE `estoque_itens`.`idItem` = idItem;
+UPDATE `estoque_itens` SET `itemQuantidade` = itemQuantidade WHERE `estoque_itens`.`idItem` = idItem;
+UPDATE `estoque_itens` SET `itemStatus` = itemStatus WHERE `estoque_itens`.`idItem` = idItem;
+
+
 
 
 END$$
@@ -90,7 +95,7 @@ CREATE TABLE `estoque_itens` (
 --
 
 INSERT INTO `estoque_itens` (`idItem`, `itemNome`, `itemDescricao`, `itemQuantidade`, `itemStatus`) VALUES
-(1, 'Cabo de Rede', 'Tipo A', 1, 'Em Estoque');
+(1, 'Caixa d\'qua', 'azul', 0, 'Sem Estoque');
 
 --
 -- Índices para tabelas despejadas
